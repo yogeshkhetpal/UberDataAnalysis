@@ -468,4 +468,4 @@ ny + geom_point(aes(x = Lon, y = Lat, colour = uberMinorData$hour), data = uberM
 ```
 
 ![](uberAnalysis_files/figure-html/Task 2.3 point plot minor data on Hour vs frequency-1.png)<!-- -->
-<img src="uberAnalysis_files/figure-html/Task 2.3 point plot minor data on Hour vs frequency-1.png/myimage.jpg">
+<img src="uberAnalysis_files/figure-html/Task 2.3 point plot minor data on Hour vs frequency-1.png">
