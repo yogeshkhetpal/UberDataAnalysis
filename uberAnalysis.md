@@ -295,7 +295,8 @@ ggmap(pointMap)+geom_point(data=uberMinorData,aes(x = uberMinorData$Lon, y = ube
 ```
 ## Warning: Removed 3277 rows containing missing values (geom_point).
 ```
-<img src="uberAnalysis_files/figure-html/Task2.0 Point Map on minor data-1.png"><!-- -->
+<img src="uberAnalysis_files/figure-html/Task2.0 Point Map on minor data-1.png">
+<!-- -->
 
 ###Summary
 
@@ -332,7 +333,7 @@ ny + geom_point(aes(x = Lon, y = Lat, colour = uberMinorData$day), data = uberMi
 ```
 ## Warning: Removed 3277 rows containing missing values (geom_point).
 ```
-<img src="berAnalysis_files/figure-html/Task2.1 point plot minor data on Day vs frequency-1.png">
+<img src="uberAnalysis_files/figure-html/Task2.1 point plot minor data on Day vs frequency-1.png">
 <!-- -->
 
 
