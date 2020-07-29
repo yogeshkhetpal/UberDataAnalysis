@@ -87,7 +87,6 @@ uberMinorData <- uberMinorData[!is.na(uberMinorData$'Date/Time'),]
 ```
 
 ## Calculating statistics from the dataset and visualising the data to show daily trends in pick ups.
-## Task 1.1 
 Day is extracted from Date/Time colum . The code involves explicit consideration of column value as Date/Time. The original csv is update with a new column known as week day. Generate Frequency of Days and Sort Data accordng to Days. Afterwars, plot the data with Day as x axis and Frequency on Y
 
 
