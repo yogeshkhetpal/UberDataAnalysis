@@ -1,5 +1,6 @@
-## UberDataAnalysis
+
 # Analysis of Uber's Ridership Data for NYC.
+## UberDataAnalysis
 
 In early 2017, The NYC Taxi and Limousine Commission (TLC) released a dataset about Uber's ridership between September 2014 and August 2015. The data contains features distinct from those in the set previously released and throughly explored by FiveThirtyEight and the Kaggle community. 
 
