@@ -12,4 +12,4 @@ This project was successfully completed using R programming language for data an
 3. other insights about the usage of the service
 
 
-The analysis and visualization can be seen in a markdown file named 'uberDataAnalysis.md'.
+The analysis and visualization can be seen in a markdown file named 'uberAnalysis.md'.
