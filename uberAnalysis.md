@@ -1,5 +1,5 @@
 ---
-title: "Portfolio 2"
+title: "Uber Data Analysis"
 author: "Yogesh Kumar"
 date: "20 May 2018"
 output: 
@@ -7,7 +7,7 @@ output:
     keep_md: true
 ---
 
-## install the required packages and load the required libraries
+## Install the required packages and load the required libraries
 
 ```r
 library(readr)
@@ -39,85 +39,26 @@ library(mapproj)
 apr <- read_csv("uber-raw-data-apr14.csv")
 ```
 
-```
-## Parsed with column specification:
-## cols(
-##   `Date/Time` = col_character(),
-##   Lat = col_double(),
-##   Lon = col_double(),
-##   Base = col_character()
-## )
-```
-
 ```r
 may <- read_csv("uber-raw-data-may14.csv")
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   `Date/Time` = col_character(),
-##   Lat = col_double(),
-##   Lon = col_double(),
-##   Base = col_character()
-## )
 ```
 
 ```r
 jun <- read_csv("uber-raw-data-jun14.csv")
 ```
 
-```
-## Parsed with column specification:
-## cols(
-##   `Date/Time` = col_character(),
-##   Lat = col_double(),
-##   Lon = col_double(),
-##   Base = col_character()
-## )
-```
-
 ```r
 jul <- read_csv("uber-raw-data-jul14.csv")
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   `Date/Time` = col_character(),
-##   Lat = col_double(),
-##   Lon = col_double(),
-##   Base = col_character()
-## )
 ```
 
 ```r
 aug <- read_csv("uber-raw-data-aug14.csv")
 ```
 
-```
-## Parsed with column specification:
-## cols(
-##   `Date/Time` = col_character(),
-##   Lat = col_double(),
-##   Lon = col_double(),
-##   Base = col_character()
-## )
-```
-
 ```r
 sep <- read_csv("uber-raw-data-sep14.csv")
 ```
 
-```
-## Parsed with column specification:
-## cols(
-##   `Date/Time` = col_character(),
-##   Lat = col_double(),
-##   Lon = col_double(),
-##   Base = col_character()
-## )
-```
 ## Merge the data using rbind 
 
 ```r
@@ -134,8 +75,7 @@ uberData <- uberData[uberData$Lon != 0,]
 uberData <- uberData[!is.na(uberData$'Date/Time'),]
 ```
 
-
-## fetching subsets of whole data(jun and july) and data data cleaning to proceed with data visualisation
+## Fetching subsets of whole data(jun and july) and data data cleaning to proceed with data visualisation
 
 ```r
 uberMinorData <- rbind( jun,jul)
@@ -145,17 +85,15 @@ uberMinorData <- uberMinorData[!is.na(uberMinorData$Lat),]
 uberMinorData <- uberMinorData[!is.na(uberMinorData$Lat),]
 uberMinorData <- uberMinorData[!is.na(uberMinorData$'Date/Time'),]
 ```
-##Task 1.1
-## calculating statistics from the dataset and visualising the data to show daily trends in pick ups.
+
+## Calculating statistics from the dataset and visualising the data to show daily trends in pick ups.
 ## Task 1.1 
 Day is extracted from Date/Time colum . The code involves explicit consideration of column value as Date/Time. The original csv is update with a new column known as week day. Generate Frequency of Days and Sort Data accordng to Days. Afterwars, plot the data with Day as x axis and Frequency on Y
-
 
 
 ```r
 uberData$day <- weekdays(as.Date(uberData$'Date/Time',"%m/%d/%Y"))
 ```
-
 
 ```r
 Day_count<-as.data.frame(table(uberData$day))
@@ -163,8 +101,9 @@ names(Day_count)<-c("Days","Freq")
 ggplot(data=Day_count,aes(x=Days,y=Freq,fill=rownames(Day_count)))+geom_bar(stat="identity",colour = "black")+guides(fill=FALSE)+labs(title = "Frequency by Days ",x="Day",y="Frequency")+ geom_text(aes(label=Freq),vjust=1.6,color="white",size=4)+theme_minimal()
 ```
 
-![](uberAnalysis_files/figure-html/Plot on frequency of pick up to the week day-1.png)<!-- -->
-##Task 1.1 Statistics 
+<img src="uberAnalysis_files/figure-html/Plot on frequency of pick up to the week day-1.png"><!-- -->
+
+##Statistics 
  step 1: Find data statistics and get minimum and maximum
 
 ```r
@@ -193,12 +132,12 @@ max(table(uberDataDay))
 ```
 ## [1] 755145
 ```
-##Task 1.1 Summary
+##Summary
 The visualization and statistics above demonstrate the following result. Sunday sees the Lowest with a count of 490180. While, Thursday sees the Highest number of Uber Pickups with 755145 and 
 
-##Task 1.2
-## Task 1.2 Plot
-### Task 1.2 Steps
+##
+##Plot
+###Steps
 Month is extracted from Date/Time colum . The code invlves explicit consideration of column value as Date/Time. The original csv is update with a new column knows as month.Generate Frequency of Month and Sort Data accordng to Month. Afterwards, Plot bargraph with Month on x-axis and Frequency on Y-Axis for Visualization
 
 
@@ -212,10 +151,12 @@ Month_count<-as.data.frame(table(uberData$month))
 names(Month_count)<-c("Month","Freq")
 ggplot(data=Month_count,aes(x=Month,y=Freq,fill=rownames(Month_count)))+geom_bar(stat="identity",colour = "black")+guides(fill=FALSE)+labs(title = "Frequency by Month ",x="Month of year ",y="Frequency")+ geom_text(aes(label=Freq),vjust=1.6,color="white",size=4)+theme_minimal()
 ```
+<img src="uberAnalysis_files/figure-html/Plot on frequency vs Month data-1.png">
+<!-- -->
 
-![](uberAnalysis_files/figure-html/Plot on frequency vs Month data-1.png)<!-- -->
-##Task 1.2 Statistics 
- step 1: Find data statistics and get minimum and maximum
+
+
+Find data statistics and get minimum and maximum
 
 ```r
 uberDataMonth<-factor(uberData$month)
@@ -243,13 +184,11 @@ max(table(uberDataMonth))
 ```
 ## [1] 1028136
 ```
-##Task 1.2 Summary
+
 The visualization and statistics above demonstrate the following result. April sees the lowest with a count of 564516
 September sees the highest number of Uber Pickups with 1028136.
 
-##Task 1.3
-## Task 1.3 Plot
-### Task 1.3 Steps
+
 Hour is extracted from Date/Time colum . The code invlves explicit consideration of column value as Date/Time. The original csv is update with a new column knows as Hour. Generate Frequency of Hour and then Sort Data accordng to Hour. Afterwards, we p
 lot bargraph with Hour on x-axis and Frequency on Y-Axis for Visualization
 
@@ -258,16 +197,15 @@ lot bargraph with Hour on x-axis and Frequency on Y-Axis for Visualization
 uberData$hour <- format(strptime(uberData$'Date/Time',format = '%m/%d/%Y %H:%M:%S'), "%H")
 ```
 
-
-
 ```r
 Hour_count<-as.data.frame(table(uberData$hour))
 names(Hour_count)<-c("Hour","Freq")
 ggplot(data=Hour_count,aes(x=Hour,y=Freq,fill=rownames(Hour_count)))+geom_bar(stat="identity",colour = "black")+guides(fill=FALSE)+labs(title = "Frequency by Hour ",x="Hour of day ",y="Frequency")+theme_minimal()
 ```
+<img src="uberAnalysis_files/figure-html/Plot on frequency vs Hour-1.png"><!-- -->
 
-![](uberAnalysis_files/figure-html/Plot on frequency vs Hour-1.png)<!-- -->
-##Task 1.3 Statistics 
+
+##Statistics 
  step 1: Find data statistics and get minimum and maximum
  
 
@@ -301,11 +239,11 @@ max(table(uberDataHour))
 ```
 ## [1] 336190
 ```
-##Task 1.3 Summary
+##Summary
 The visualization and statistics above demonstrate the following result
 **17 hours** sees the highest number of Uber Pickups with 336190 and **02 Hours** sees the lowest with a count of 45865
 
-## Task 2.0
+
 ### Steps
 First, Obtain the New York map using get_map API and plot density map of data accroding to Latitude vs Longitude of uber pick ups. Afterwards, For better visulaization the points need to be set to size 2. Bin the points and drop the bins which dont have any samples in them
 
@@ -328,13 +266,9 @@ ggmap(densityPlot)+stat_density2d(aes(x = uberMinorData$Lon, y = uberMinorData$L
   labs(title = "Uber Pickup Density By Location\n", x = "\nLongitude", y = "Latitude\n")
 ```
 
-```
-## Warning: Removed 158023 rows containing non-finite values (stat_density2d).
 
-## Warning: Removed 158023 rows containing non-finite values (stat_density2d).
-```
-
-![](uberAnalysis_files/figure-html/Task2.0 Density Map on minor data-1.png)<!-- -->
+<img src="uberAnalysis_files/figure-html/Task2.0 Density Map on minor data-1.png">
+<!-- -->
 
 
 ### Steps
@@ -361,14 +295,13 @@ ggmap(pointMap)+geom_point(data=uberMinorData,aes(x = uberMinorData$Lon, y = ube
 ```
 ## Warning: Removed 3277 rows containing missing values (geom_point).
 ```
-
-![](uberAnalysis_files/figure-html/Task2.0 Point Map on minor data-1.png)<!-- -->
+<img src="uberAnalysis_files/figure-html/Task2.0 Point Map on minor data-1.png"><!-- -->
 
 ###Summary
 
 The above graphs(density and point plot) shows where Uber Pickups occur in NYC according to the geospatial data.
 
-#Task 2.1
+
 
 ##Steps
 Extract Day from DateTime column and store it as another column 
@@ -376,7 +309,7 @@ Extract Day from DateTime column and store it as another column
 ```r
 uberMinorData$day <- weekdays(as.Date(uberMinorData$'Date/Time',"%m/%d/%Y"))
 ```
-#Task 2.1 Points plot
+Points plot
 Download map for New York using get_map and set it to ny using getmap adn add points to the map using Lat and Lon data categorizing the color according to Day
 
 ```r
@@ -399,17 +332,17 @@ ny + geom_point(aes(x = Lon, y = Lat, colour = uberMinorData$day), data = uberMi
 ```
 ## Warning: Removed 3277 rows containing missing values (geom_point).
 ```
+<img src="berAnalysis_files/figure-html/Task2.1 point plot minor data on Day vs frequency-1.png">
+<!-- -->
 
-![](uberAnalysis_files/figure-html/Task2.1 point plot minor data on Day vs frequency-1.png)<!-- -->
 
 
-#Task 2.2
 Extract Month from DateTime column and store it as another column 
 
 ```r
 uberMinorData$month<- months(as.Date(uberMinorData$'Date/Time',"%m/%d/%Y"))
 ```
-#Task 2.2 Points plot
+Points plot
 Download map for New York using get_map and set it to ny using getmap and add points to the map using Lat and Lon data categorizing the color according to Month
 
 ```r
@@ -429,13 +362,11 @@ ny <- ggmap(nymap)
 ny + geom_point(aes(x = Lon, y = Lat, colour = uberMinorData$month), data = uberMinorData)+labs(title = "Uber Pickups By Month on Location\n", x = "\nLongitude", y = "Latitude\n",colour="Red")
 ```
 
-```
-## Warning: Removed 3277 rows containing missing values (geom_point).
-```
 
-![](uberAnalysis_files/figure-html/Task 2.2 point plot minor data on Month vs frequency-1.png)<!-- -->
+<img src="uberAnalysis_files/figure-html/Task 2.2 point plot minor data on Month vs frequency-1.png">
+<!-- -->
 
-#Task 2.3
+
 
 Extract Hour from DateTime column and store it as another column 
 
@@ -444,7 +375,8 @@ uberMinorData$hour <- format(strptime(uberMinorData$'Date/Time',format = '%m/%d/
 ```
 ##Steps
 Download map for New York using get_map and set it to ny using getmap and add points to the map using Lat and Lon data categorizing the color according to Hour
-#Task 2.3 Points plot
+
+Points plot
 
 ```r
 nymap <- get_map("New York", zoom = 10)
@@ -467,5 +399,5 @@ ny + geom_point(aes(x = Lon, y = Lat, colour = uberMinorData$hour), data = uberM
 ## Warning: Removed 3277 rows containing missing values (geom_point).
 ```
 
-![](uberAnalysis_files/figure-html/Task 2.3 point plot minor data on Hour vs frequency-1.png)<!-- -->
+<!-- -->
 <img src="uberAnalysis_files/figure-html/Task 2.3 point plot minor data on Hour vs frequency-1.png">
